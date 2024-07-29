@@ -36,11 +36,11 @@ public class SetFPS : MonoBehaviour
 #elif UNITY_SWITCH // Attempt to set to 1080p 60hz
         QualitySettings.vSyncCount = 1;
         Screen.SetResolution(HDwidth, HDheight, FullScreenMode.FullScreenWindow, rf60hz);
-#elif UNITY_STANDALONE_WIN
+#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
         Application.targetFrameRate = 120;
-        QualitySettings.vSyncCount = 1;
-        //var res = resolutions[resolutions.Length-1];
-        //Screen.SetResolution(res.width, res.height, FullScreenMode.FullScreenWindow, res.refreshRateRatio);
+        QualitySettings.vSyncCount = 0;
+        var res = resolutions[resolutions.Length-1];
+        Screen.SetResolution(res.width, res.height, FullScreenMode.FullScreenWindow, res.refreshRateRatio);
 #endif
     }
 }
